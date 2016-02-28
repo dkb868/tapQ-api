@@ -23,7 +23,7 @@ router.get('/callAndInput/:numbers', function(req,res,next){
   });
   console.log("DAT STRING: " + digitString);
   client.calls.create({
-    url: "http://twimlbin.com/external/280b4bff4294310842a0149decd2b29b",
+    url: "http://twimlbin.com/4563711fd1af1cd6c75b8e4fe41e987b",
     to: "+14804943646",
     from: "+12028499415",
     sendDigits: digitString
@@ -32,8 +32,17 @@ router.get('/callAndInput/:numbers', function(req,res,next){
   });
 });
 
-router.get('/returnCall/:number', function(req,res,next){
 
+router.get('/returnCall/:number', function(req,res,next){
+  // Download the Node helper library from twilio.com/docs/node/install
+// These vars are your accountSid and authToken from twilio.com/user/account
+  client.calls.create({
+    url: "http://twimlbin.com/4563711fd1af1cd6c75b8e4fe41e987b",
+    to: "+1" + req.params.number,
+    from: "+14804943646"
+  }, function(err, call) {
+    process.stdout.write(call.sid);
+  });
 });
 
 // get the api to add person to the conference call
